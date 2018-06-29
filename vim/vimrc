@@ -61,6 +61,8 @@ nnoremap <leader>' bi'<esc>lea'<esc>
 vnoremap <leader>{ <esc>`<i{<esc>`>a}<esc>
 vnoremap <leader>( <esc>`<i(<esc>`>a)<esc>
 vnoremap <leader>[ <esc>`<i[<esc>`>a]<esc>
+vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 " move to end of line
 nnoremap L $
 vnoremap L $
@@ -138,6 +140,7 @@ augroup py_abbrevs
     autocmd FileType python iabbrev <buffer> elsee else:<esc>o
     autocmd FileType python iabbrev <buffer> deff def:<esc>i
     autocmd FileType python iabbrev <buffer> rtn return
+    autocmd FileType python iabbrev <buffer> classs class:<esc>i
 augroup END
 augroup py_maps
     autocmd!
@@ -165,6 +168,13 @@ augroup py_misc
     autocmd!
     " highlight trailing spaces on save 
     autocmd FileType python autocmd BufWritePre * match Error /\v +$/
+augroup END
+" }}}
+" Java {{{
+augroup java_misc
+    autocmd!
+    " highlight trailing spaces on save 
+    autocmd FileType java autocmd BufWritePre * match Error /\v +.$/
 augroup END
 " }}}
 " Vimrc Autocommands {{{
@@ -203,15 +213,11 @@ set statusline+=\ %* " Space and end color
 " }}}
 " Misc {{{
 " temporary mappings and abbreviations to force usage of new bindings :)
-" remove arrow keys
-inoremap OD <nop>
-inoremap OC <nop>
-inoremap OA <nop>
-inoremap OB <nop>
 " remove some non abbreviated stuff
 augroup bad_habits
     autocmd!
     autocmd FileType python iabbrev <buffer> return NOOOOO
     autocmd FileType python iabbrev <buffer> def NOOOOO
+    autocmd FileType python iabbrev <buffer> class NOOOOO
 augroup END
 " }}}
