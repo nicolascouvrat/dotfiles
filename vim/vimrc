@@ -58,11 +58,12 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>" bi"<esc>lea"<esc>
 nnoremap <leader>' bi'<esc>lea'<esc>
 " surronds in visual mode
-vnoremap <leader>{ <esc>`<i{<esc>`>a}<esc>
-vnoremap <leader>( <esc>`<i(<esc>`>a)<esc>
-vnoremap <leader>[ <esc>`<i[<esc>`>a]<esc>
-vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
-vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
+" the l is necessary because adding one character messes up the `>
+vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
+vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
+vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
+vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
+vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
 " move to end of line
 nnoremap L $
 vnoremap L $
@@ -192,7 +193,6 @@ augroup csv_options
 augroup END
 " }}}
 " General Abbreviations {{{
-iabbrev @@ nicolas.couvrat@datadoghq.com
 " }}}
 " Status Line {{{
 set statusline=%1*\ " Space and start color

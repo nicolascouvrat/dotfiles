@@ -11,9 +11,12 @@ function! SearchReplaceOperator(type)
     elseif a:type ==# 'char'
         normal! `[v`]y
     else
+    " line or block, use last yanked pattern on current selection
+        let r = input("Replace '" . @@ . "' (last yanked word) with? (on selection) ")
+        execute "'<,'>substitute /" . @@ . "/" . l:r . "/g"
         return
     endif
-    let r = input("Replace '" . @@ . "' with? ") 
+    let r = input("Replace '" . @@ . "' with? ")
     execute "%substitute /" . @@ . "/" . l:r . "/g"
 
 endfunction
