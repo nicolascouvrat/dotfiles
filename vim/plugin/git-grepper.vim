@@ -1,6 +1,6 @@
 " Movement operators
-nmap <silent> <leader>gg :set opfunc=GitGrep<cr>g@
-vmap <silent> <leader>gg :<c-u>call GitGrep(visualmode(), 1)<cr>
+nmap <silent> <leader>gg :set opfunc=GitGrepOperator<cr>g@
+vmap <silent> <leader>gg :<c-u>call GitGrepOperator(visualmode(), 1)<cr>
 
 " Command
 command! -nargs=+ GitGrep call GitGrepCommand(Sanitize('<args>'))
@@ -34,7 +34,7 @@ function! GetBackToOriginalFile()
     execute "edit " . g:GREP_ORIGINAL_FILE
 endfunction
 
-function! GitGrep(type, ...)
+function! GitGrepOperator(type, ...)
     " get text
     if a:type ==# 'char'
         execute "normal! `[v`]y"
@@ -54,7 +54,7 @@ function! GitGrep(grep_string)
     " the -n is necessary for vim to correctly interpret matches
     let &grepprg = "git grep -n $*"
     let cmd = "silent grep! " . shellescape(a:grep_string)
-    echom cmd
+    execute cmd
     " restore display
     execute "normal! \<c-l>"
     " restore grep to its original value
