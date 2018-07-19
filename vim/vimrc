@@ -77,12 +77,6 @@ nnoremap <leader>j <c-w>j
 nnoremap <leader>l <c-w>l
 " duplicate line
 nnoremap <leader>dl Vyp
-" " search and replace last yank in selection
-" nnoremap <leader>sr :%s/<c-r>0//g<left><left>
-" nnoremap <leader>src :%s/<c-r>0//gc<left><left><left>
-" " or in all file
-" vnoremap <leader>sr :s/<c-r>0//g<left><left>
-" vnoremap <leader>src :s/<c-r>0//gc<left><left><left>
 " use \v (very magic) mode on searches
 nnoremap / /\v
 nnoremap ? ?\v
@@ -92,6 +86,7 @@ nnoremap <leader>cs :match none<cr>:nohlsearch<cr>
 nnoremap <leader>vsP :execute "rightbelow vsplit" bufname("#")<cr>
 " open previous buffer in current window
 nnoremap <leader>P :execute "edit " . bufname("#")<cr> " go to previous and next quickfix entry
+" navigate in the quickfix list
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>p :cprevious<cr>
 " }}}
