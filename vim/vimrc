@@ -1,3 +1,7 @@
+filetype plugin on
+" Get the vimfolder
+" Contains the full path
+let VIMFOLDER = fnamemodify(expand("$MYVIMRC"), ":p:h")
 " Colors {{{
 colorscheme dracula
 syntax enable " enable syntax processing
@@ -169,8 +173,20 @@ augroup END
 " Java {{{
 augroup java_misc
     autocmd!
-    " highlight trailing spaces on save 
-    autocmd FileType java autocmd BufWritePre * match Error /\v +.$/
+    " highlight trailing spaces on save
+    autocmd FileType java autocmd BufWritePre * match Error /\v +$/
+    autocmd FileType java inoremap <buffer> <leader>E :!javac %
+augroup END
+augroup java_abbrev
+    autocmd!
+    autocmd FileType java iabbrev <buffer> iff if<space>()<space>{<esc>o}<esc>kf(a
+    autocmd FileType java iabbrev <buffer> forr for<space>()<space>{<esc>o}<esc>kf(a
+augroup END
+" }}}
+" Makefile Autocommands {{{
+augroup misc
+    autocmd!
+    autocmd FileType make set noexpandtab
 augroup END
 " }}}
 " Vimrc Autocommands {{{
@@ -216,3 +232,4 @@ augroup bad_habits
     autocmd FileType python iabbrev <buffer> class NOOOOO
 augroup END
 " }}}
+
