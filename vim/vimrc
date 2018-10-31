@@ -1,7 +1,21 @@
+" FileType plugin {{{
 filetype plugin on
-" Get the vimfolder
-" Contains the full path
-let VIMFOLDER = fnamemodify(expand("$MYVIMRC"), ":p:h")
+" Handles opening of vimrc and ftplugin config file (if it exists)
+function! OpenConfig()
+    " Get the vimfolder
+    " Contains the full path
+    let plugin_folder = fnamemodify(expand("$MYVIMRC"), ":p:h") . "/ftplugin/"
+    let file_name = l:plugin_folder . &filetype . ".vim"
+    " usual behavior : open vimrc
+    let execute_string =  "split $MYVIMRC"
+    if filereadable(l:file_name)
+        " if has plugin file, also open it
+        let execute_string = l:execute_string . " | vsplit " . l:file_name
+    endif
+    execute l:execute_string
+endfunction
+" }}}
+
 " Colors {{{
 colorscheme dracula
 syntax enable " enable syntax processing
@@ -54,8 +68,8 @@ nnoremap <leader>- ddp
 nnoremap <leader>_ ddkP
 " put word in caps in edit mode
 inoremap <leader><c-u> <esc>viwUea
-" quick access to vimrc
-nnoremap <leader>ev :sp $MYVIMRC<cr>
+" quick access to vimrc and other config files
+nnoremap <leader>ev :call OpenConfig()<cr>
 " quick source from vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " surrounds in normal mode
@@ -121,88 +135,6 @@ onoremap f :<c-u>normal! 0f(hviw<cr>
 " variable name (assumes one space before the '=')
 onoremap v :<c-u>normal! 0f=hhviw<cr>
 " }}}
-" General Autocommands {{{
-" }}}
-" Python Autocommands {{{
-" Note above the below abbrev: change them to something more legit
-" Once the left right escape key will have been reactivated
-augroup py_opts
-    autocmd!
-    " follow google style guide
-    autocmd FileType python setlocal textwidth=80
-augroup END
-augroup py_abbrevs
-    " shortcuts for loops and other structs
-    autocmd!
-    autocmd FileType python iabbrev <buffer> iff if:<esc>i
-    autocmd FileType python iabbrev <buffer> forr for:<esc>i
-    autocmd FileType python iabbrev <buffer> eliff elif:<esc>i
-    autocmd FileType python iabbrev <buffer> elsee else:<esc>o
-    autocmd FileType python iabbrev <buffer> deff def:<esc>i
-    autocmd FileType python iabbrev <buffer> rtn return
-    autocmd FileType python iabbrev <buffer> classs class:<esc>i
-augroup END
-augroup py_maps
-    autocmd!
-    " comment line
-    autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
-    " uncomment line
-    autocmd FileType python nnoremap <buffer> <localleader>C 0vld
-    " automatically close {[(
-    autocmd FileType python inoremap <buffer> [ []<esc>i
-    autocmd FileType python inoremap <buffer> ( ()<esc>i
-    autocmd FileType python inoremap <buffer> { {}<esc>i
-    " automatically close '"
-    autocmd FileType python inoremap <buffer> " ""<esc>i
-    autocmd FileType python inoremap <buffer> ' ''<esc>i
-    " exit braces
-    " TODO improve it and make it work for several words in braces
-    " TODO actually have it useful?
-    " (for now only works if used from the last word in braces)
-    " autocmd FileType python inoremap <buffer> jkl <esc>viw<esc>la 
-augroup END
-augroup py_movements
-    autocmd!
-augroup END
-augroup py_misc
-    autocmd!
-    " highlight trailing spaces on save 
-    autocmd FileType python autocmd BufWritePre * match Error /\v +$/
-augroup END
-" }}}
-" Java {{{
-augroup java_misc
-    autocmd!
-    " highlight trailing spaces on save
-    autocmd FileType java autocmd BufWritePre * match Error /\v +$/
-    autocmd FileType java inoremap <buffer> <leader>E :!javac %
-augroup END
-augroup java_abbrev
-    autocmd!
-    autocmd FileType java iabbrev <buffer> iff if<space>()<space>{<esc>o}<esc>kf(a
-    autocmd FileType java iabbrev <buffer> forr for<space>()<space>{<esc>o}<esc>kf(a
-augroup END
-" }}}
-" Makefile Autocommands {{{
-augroup misc
-    autocmd!
-    autocmd FileType make set noexpandtab
-augroup END
-" }}}
-" Vimrc Autocommands {{{
-augroup misc
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    " remove autowrap
-    autocmd FileType vim setlocal formatoptions-=t
-augroup END
-" }}}
-" CSV Autocommands {{{
-augroup csv_options
-    " remove auto line split when line too long
-    autocmd FileType csv setlocal formatoptions-=t
-augroup END
-" }}}
 " General Abbreviations {{{
 " }}}
 " Status Line {{{
@@ -221,15 +153,5 @@ set statusline+=%4*\ " Space and start color
 set statusline+=%P " Percent of file 
 set statusline+=\ %* " Space and end color
 
-" }}}
-" Misc {{{
-" temporary mappings and abbreviations to force usage of new bindings :)
-" remove some non abbreviated stuff
-augroup bad_habits
-    autocmd!
-    autocmd FileType python iabbrev <buffer> return NOOOOO
-    autocmd FileType python iabbrev <buffer> def NOOOOO
-    autocmd FileType python iabbrev <buffer> class NOOOOO
-augroup END
 " }}}
 
