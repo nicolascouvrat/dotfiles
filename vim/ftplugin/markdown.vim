@@ -1,9 +1,9 @@
 " Mappings {{{
 " basic titles
 " compile (with pandoc)
-nnoremap <buffer> <leader>co :!pandoc -s -o %:r.html %<cr>
+nnoremap <buffer> <leader>co :!pandoc -s -o %:r.pdf %<cr>
 " compile and open
-nnoremap <buffer> <leader>ex :!pandoc -s -o %:r.html % & firefox %:r.html<cr>
+nnoremap <buffer> <leader>ex :!pandoc -s -o %:r.pdf % & evince %:r.pdf<cr>
 " enable spellchecker
 setlocal spell
 " headers
@@ -18,6 +18,8 @@ vmap <silent> <leader>b :<c-u>call MdBoldOperator(visualmode(), 1)<cr>
 " set to code
 nmap <silent> <leader>c :set opfunc=MdCodeOperator<cr>g@
 vmap <silent> <leader>c :<c-u>call MdCodeOperator(visualmode(), 1)<cr>
+" fix orthograph
+nnoremap <buffer> <leader>o ]sz=
 " }}}
 " Functions {{{
 function! MdItalicOperator(type, ...)
