@@ -1,3 +1,20 @@
+" Plugin manager {{{
+set nocompatible
+" It is required to turn filetype off while Vundle is running
+" due to runtime issues. It is fine to turn it back on after though.
+filetype off
+set rtp +=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" Let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" javascript and jsx syntax highlights
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+call vundle#end()
+" It's now fine to turn back on filetype
+
+" }}}
 " FileType plugin {{{
 filetype plugin on
 " Handles opening of vimrc and ftplugin config file (if it exists)
