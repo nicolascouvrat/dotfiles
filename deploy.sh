@@ -37,5 +37,9 @@ recursive_linking() {
 }
 
 recursive_linking
+# Install vundle
+echo Installing Vundle..
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo All set!
 
 ### VIM DONE ###

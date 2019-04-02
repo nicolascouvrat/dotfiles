@@ -10,6 +10,8 @@ Plugin 'VundleVim/Vundle.vim'
 " javascript and jsx syntax highlights
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+" go
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 " It's now fine to turn back on filetype
