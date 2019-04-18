@@ -1,0 +1,19 @@
+# Enable vim-like bindings
+set editing-mode vi
+
+# These require $BASH_VERSION > 4.4
+set show-mode-in-prompt on
+set vi-ins-mode-string "(i) "
+set vi-cmd-mode-string "(c) "
+
+# COMMAND-MODE KEYBINDS
+set keymap vi-command
+# Improved command search
+"j":history-search-forward
+"k":history-search-backward
+# INSERT MODE KEYBINDS
+set keymap vi-insert
+"jk":vi-movement-mode
+
+
+
