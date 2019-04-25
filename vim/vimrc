@@ -7,9 +7,12 @@ set rtp +=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " javascript and jsx syntax highlights
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+" go
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 " It's now fine to turn back on filetype
