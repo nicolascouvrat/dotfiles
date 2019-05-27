@@ -6,6 +6,9 @@ set show-mode-in-prompt on
 set vi-ins-mode-string "(i) "
 set vi-cmd-mode-string "(c) "
 
+# no bell
+set bell-style none
+
 # COMMAND-MODE KEYBINDS
 set keymap vi-command
 # Improved command search

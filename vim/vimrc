@@ -73,6 +73,8 @@ set laststatus=2
 " Searching Options {{{
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
+set path+=.,**
+set wildmenu
 " }}}
 " Folding Options {{{
 set foldenable " show all folds
