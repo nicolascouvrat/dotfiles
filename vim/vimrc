@@ -62,7 +62,9 @@ set shiftwidth=2 " number of spaces for each indent step
 set autoindent " enable auto indentation
 " }}}
 " UI Config Options{{{
+" show relative numbers for all but the current line
 set number " show line numbers
+set relativenumber " show relative numbers
 " set cursorline " highlight current line
 set lazyredraw " avoid redraw in the middle of macros
 set showmatch " highligh matching [{()}]
@@ -73,6 +75,8 @@ set laststatus=2
 " Searching Options {{{
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
+set path+=.,**
+set wildmenu
 " }}}
 " Folding Options {{{
 set foldenable " show all folds
