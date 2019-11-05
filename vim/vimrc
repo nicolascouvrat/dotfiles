@@ -35,7 +35,6 @@ function! OpenConfig()
     execute l:execute_string
 endfunction
 " }}}
-
 " Colors {{{
 colorscheme dracula
 syntax enable " enable syntax processing
@@ -52,7 +51,7 @@ augroup coloring
     autocmd ColorScheme,VimEnter * hi User4 ctermbg=84 ctermfg=234 
 augroup END
 " }}}
-" Spaces & Tabs Options {{{
+" Spaces & Tabs {{{
 set tabstop=2 " number of visual spaces per TAB
 set softtabstop=2 " number of spaces in tab when editing
 set expandtab " replace tabs with spaces
@@ -61,7 +60,7 @@ set textwidth=100 " max number of character on a line. NOTE: see `formatoptions`
 set shiftwidth=2 " number of spaces for each indent step
 set autoindent " enable auto indentation
 " }}}
-" UI Config Options{{{
+" UI {{{
 " show relative numbers for all but the current line
 set number " show line numbers
 set relativenumber " show relative numbers
@@ -72,13 +71,21 @@ set matchtime=2 " number of ms the matching bracket should be highlighted
 " always enable status line
 set laststatus=2
 " }}}
-" Searching Options {{{
+" Searching {{{
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
 set path+=.,**
 set wildmenu
 " }}}
-" Folding Options {{{
+" Tags {{{
+" directly jump if only one, open list instead
+nnoremap <c-]> g<c-]>
+" more logical jump back
+nnoremap <c-[> <c-t>
+" use better completion (replaces base completion module)
+inoremap <c-n> <c-x><c-]>
+" }}}
+" Folding {{{
 set foldenable " show all folds
 " }}}
 " General Mappings {{{
