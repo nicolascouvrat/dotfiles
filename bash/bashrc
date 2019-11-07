@@ -88,3 +88,6 @@ alias gd="git diff"
 # bash
 alias eb="vim ~/.bashrc"
 alias sb="source ~/.bashrc"
+
+# enable usage of variables directly in cd (without $)
+shopt -s cdable_vars
