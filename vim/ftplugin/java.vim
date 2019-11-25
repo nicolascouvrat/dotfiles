@@ -2,7 +2,14 @@
 iabbrev <buffer> iff if<space>()<space>{<esc>o}<esc>kf(a
 iabbrev <buffer> forr for<space>()<space>{<esc>o}<esc>kf(a
 " }}}
-" Misc {{{
-autocmd BufWritePre * match Error /\v +$/
-inoremap <buffer> <leader>E :!javac %
+" Mappings {{{
+" automatically close {[(
+inoremap <buffer> [ []<esc>i
+inoremap <buffer> ( ()<esc>i
+inoremap <buffer> { {}<esc>i
+" automatically close '"
+inoremap <buffer> " ""<esc>i
+inoremap <buffer> ' ''<esc>i
+" automatically close <
+inoremap <buffer> < <><esc>i
 " }}}
