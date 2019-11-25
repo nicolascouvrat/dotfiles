@@ -85,6 +85,8 @@ nnoremap <c-]> g<c-]>
 " nnoremap <c-[> <c-t>
 " use better completion (replaces base completion module)
 inoremap <c-n> <c-x><c-]>
+" recursively go up the tree from getcwd()
+set tags=tags;
 " }}}
 " Folding {{{
 set foldenable " show all folds
@@ -200,11 +202,22 @@ let g:ctrlp_custom_ignore='\v[\/](target)'
 " }}}
 "
 " TEST SECTION {{{
+" Delete all tags for file in the main tags file
+" file is the full path to the file
+function! DeleteTags(file)
+  let cwd = getcwd()
+  let pattern = substitute(a:file, cwd . '/', "", "")
+  let tagfile = cwd . '/tags'
+  let cmd = "sed -i '\\:" . pattern . ":d' " . tagfile
+  echom cmd
+  let resp = system(cmd)
+endfunction
+
 function! UpdateTags()
   let f = expand("%:p")
+  call DeleteTags(f)
   let cmd = 'ctags -a ' . f
   let resp = system(cmd)
-  echom resp
 endfunction
 
 function! ResetTags()
