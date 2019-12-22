@@ -62,6 +62,8 @@ set shiftwidth=2 " number of spaces for each indent step
 set autoindent " enable auto indentation
 " }}}
 " UI {{{
+" turn of the 'boop' sound
+set belloff=all
 " show relative numbers for all but the current line
 set number " show line numbers
 set relativenumber " show relative numbers
