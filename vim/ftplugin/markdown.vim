@@ -53,4 +53,14 @@ function! MdEmphasisOperator(token, type, ...)
     " operate on selection (not line nor block)
     execute "normal `<i" . a:token . "\<esc>`>" . l:compensation . "a" . a:token . "\<esc>"
 endfunction
+
+" Inserts a title with today's date formatted for journal
+function! Today()
+  let last = line('$')
+  let today = strftime("%B %d, %Y (%A)")
+  call append(last, "# " . today)
+  " Insert two lines, and start writing!
+  execute "normal! Go\<CR>"
+  startinsert
+endfunction
 " }}}
