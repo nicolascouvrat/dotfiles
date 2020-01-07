@@ -13,6 +13,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 " go
 Plugin 'fatih/vim-go'
+Plugin 'nicolascouvrat/vim-simple-tags'
 
 call vundle#end()
 " It's now fine to turn back on filetype
@@ -61,6 +62,8 @@ set shiftwidth=2 " number of spaces for each indent step
 set autoindent " enable auto indentation
 " }}}
 " UI {{{
+" turn of the 'boop' sound
+set belloff=all
 " show relative numbers for all but the current line
 set number " show line numbers
 set relativenumber " show relative numbers
@@ -163,11 +166,6 @@ onoremap il" :<c-u>normal! F"vi"<cr>
 onoremap in' :<c-u>normal! f'vi'<cr>
 " In Last '
 onoremap il' :<c-u>normal! F'vi'<cr>
-
-" function name
-onoremap f :<c-u>normal! 0f(hviw<cr>
-" variable name (assumes one space before the '=')
-onoremap v :<c-u>normal! 0f=hhviw<cr>
 " }}}
 " General Abbreviations {{{
 " }}}
@@ -197,18 +195,4 @@ augroup END
 " Plugin config {{{
 " ignore maven build files in ctrlp finder
 let g:ctrlp_custom_ignore='\v[\/](target)' 
-" }}}
-"
-" TEST SECTION {{{
-function! UpdateTags()
-  let f = expand("%:p")
-  let cmd = 'ctags -a ' . f
-  let resp = system(cmd)
-  echom resp
-endfunction
-
-function! ResetTags()
-  let cmd = 'ctags -R .'
-  let resp = system(cmd)
-endfunction
 " }}}
