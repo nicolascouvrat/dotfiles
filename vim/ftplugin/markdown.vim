@@ -20,6 +20,13 @@ nmap <silent> <leader>c :set opfunc=MdCodeOperator<cr>g@
 vmap <silent> <leader>c :<c-u>call MdCodeOperator(visualmode(), 1)<cr>
 " fix orthograph
 nnoremap <buffer> <leader>o ]sz=
+
+
+" }}}
+" Folding {{{
+setlocal foldenable
+setlocal foldmethod=expr
+setlocal foldexpr=FoldLevel(v:lnum)
 " }}}
 " Functions {{{
 function! MdItalicOperator(type, ...)
@@ -62,5 +69,36 @@ function! Today()
   " Insert two lines, and start writing!
   execute "normal! Go\<CR>"
   startinsert
+endfunction
+
+let s:inCodeBlock = 0
+
+" Fold #, ## and codeblocks.
+function! FoldLevel(lnum)
+  if s:inCodeBlock == 1 
+    " disable all folding, except if we are finishing a block
+    if getline(a:lnum) ==# '```'
+      let s:inCodeBlock = 0
+      return "s1"
+    endif
+
+    return "="
+  endif
+
+  if getline(a:lnum) =~? '\v^# .*$'
+    return ">1"
+  endif
+
+  if getline(a:lnum) =~? '\v^## .*$'
+    return ">2"
+  endif
+
+  " We enter a code block
+  if getline(a:lnum) =~? '^```\a*$'
+    let s:inCodeBlock = 1
+    return "a1"
+  endif
+
+  return "="
 endfunction
 " }}}
