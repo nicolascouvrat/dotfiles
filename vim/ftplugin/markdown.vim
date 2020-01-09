@@ -65,9 +65,9 @@ endfunction
 function! Today()
   let last = line('$')
   let today = strftime("%B %d, %Y (%A)")
-  call append(last, "# " . today)
+  call append(last, ["", "# " . today, ""])
   " Insert two lines, and start writing!
-  execute "normal! Go\<CR>"
+  execute "normal! Go"
   startinsert
 endfunction
 
