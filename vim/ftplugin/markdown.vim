@@ -93,6 +93,14 @@ function! FoldLevel(lnum)
     return ">2"
   endif
 
+  if getline(a:lnum) =~? '\v^### .*$'
+    return ">3"
+  endif
+
+  if getline(a:lnum) =~? '\v^#### .*$'
+    return ">4"
+  endif
+
   " We enter a code block
   if getline(a:lnum) =~? '^```\a*$'
     let s:inCodeBlock = 1
