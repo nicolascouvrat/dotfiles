@@ -144,6 +144,8 @@ nnoremap <leader>P :execute "edit " . bufname("#")<cr> " go to previous and next
 " navigate in the quickfix list
 nnoremap <leader>n :cnext<cr>
 nnoremap <leader>p :cprevious<cr>
+" add 1 to the count to make the range work better with relative line numbering
+nnoremap : :<C-R>=v:count ==# 0 ? "" : "+1"<CR>
 " }}}
 " Movement Mappings {{{
 " In Next (
