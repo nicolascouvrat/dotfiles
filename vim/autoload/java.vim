@@ -6,7 +6,7 @@ function! java#FormatFile()
   let ret = system("java -jar " . googleStyle . " --replace " . expand("%"))
   
   if v:shell_error
-    s:quickfixOpened = 1
+    let s:quickfixOpened = 1
     silent cexpr ret
     copen
     return
