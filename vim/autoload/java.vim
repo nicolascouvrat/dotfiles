@@ -13,6 +13,7 @@ function! java#FormatFile()
   endif
 
   if s:quickfixOpened
+    let s:quickfixOpened = 0
     silent cexpr []
     cclose
   endif

@@ -86,8 +86,9 @@ nnoremap <c-]> g<c-]>
 " more logical jump back
 " TODO: investigate this suspicious binding
 " nnoremap <c-[> <c-t>
+" TODO: remove?
 " use better completion (replaces base completion module)
-inoremap <c-n> <c-x><c-]>
+" inoremap <c-n> <c-x><c-]>
 " }}}
 " Folding {{{
 set foldenable " show all folds
