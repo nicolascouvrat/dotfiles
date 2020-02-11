@@ -21,3 +21,6 @@ augroup java
   autocmd BufWritePost <buffer> call java#FormatFile()
 augroup END
 " }}}
+" Commands {{{
+command! -nargs=0 JavaPackage call java#PrependPackage(expand("%"))
+" }}}
