@@ -23,4 +23,6 @@ augroup END
 " }}}
 " Commands {{{
 command! -nargs=0 JavaPackage call java#PrependPackage(expand("%"))
+command! -nargs=0 JavaAlternate call java#Alternate(expand("%"))
+command! -nargs=0 JavaCreateTestFile call java#CreateTestFile(expand("%"))
 " }}}
