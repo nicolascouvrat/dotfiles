@@ -59,6 +59,8 @@ endfunction
 " PrependPackage adds the package name on top of the given file
 "
 " filename has to be a full path to a .java file
+" FIXME: should probably not let filename up to the caller to decide, as it might pass expand("%")
+" when it needs expand("%:p")
 function! java#PrependPackage(filename)
   let rpPath = s:hasInPath(a:filename, s:JAVA_ROOT)
   if len(rpPath) ==# 0
@@ -91,11 +93,13 @@ function! s:alternatePath(filename)
 
   call add(alternatePath, alternateClassName)
 
-  return join(alternatePath, "/")
+  " make the path absolute, as filename, which we used to create it, was absolute too
+  return "/" . join(alternatePath, "/")
 endfunction
 
 function! java#Alternate(filename)
-  execute "edit " . s:alternatePath(a:filename)
+  let alternateFilename = s:alternatePath(a:filename)
+  execute "edit " . alternateFilename
 endfunction
 
 function! java#CreateTestFile(filename)
