@@ -1,4 +1,6 @@
+export GOPATH=~/go
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOPATH/bin
 
 # Auto add ssh key and do it only once after each reboot
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
