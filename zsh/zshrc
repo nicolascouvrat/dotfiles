@@ -10,6 +10,10 @@ export ZSH="/Users/nicolas.couvrat/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
+# Disable warning for folders that are now owned by me (happens when some folders are owned by
+# company admin...)
+ZSH_DISABLE_COMPFIX="true"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
