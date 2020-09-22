@@ -51,6 +51,10 @@ augroup coloring
     autocmd ColorScheme,VimEnter * hi User3 ctermbg=215 ctermfg=234
     autocmd ColorScheme,VimEnter * hi User4 ctermbg=84 ctermfg=234 
 augroup END
+" when used inside tmux, vim falls back to 8 colors mode which messes up the theme
+if exists("$TMUX")
+  set t_Co=256
+endif
 " }}}
 " Spaces & Tabs {{{
 set tabstop=2 " number of visual spaces per TAB
