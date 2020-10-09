@@ -133,6 +133,10 @@ alias gd="git diff"
 # Zsh
 alias ez="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
+
+# Kube
+alias k="kubectl"
+
 # BEGIN ANSIBLE MANAGED BLOCK
 # Add homebrew binaries to the path.
 export PATH="/usr/local/bin:${PATH?}"
@@ -169,3 +173,18 @@ export AWS_VAULT_KEYCHAIN_NAME=login
 export AWS_SESSION_TTL=24h
 export AWS_ASSUME_ROLE_TTL=1h
 # END ANSIBLE MANAGED BLOCK
+
+# DD ONLY
+# to boot the devenv
+alias devenvboot="java \
+  -Dconfig.resource=local.conf \
+  -Xms2048m -Xmx2048m -XX:MaxMetaspaceSize=256m \
+  -cp devenv/target/logs-backend-devenv-1.0-SNAPSHOT-shaded.jar \
+com.dd.logs.launcher.Main"
+# to easily go to logs-admin-front
+alias cd-admin-front="cd ${DATADOG_ROOT}/logs-backend/admin-front/src/main/resources/web/"
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 13)
+eval "$(nodenv init -)"
+# for macos
+alias ctags="`brew --prefix`/bin/ctags"
