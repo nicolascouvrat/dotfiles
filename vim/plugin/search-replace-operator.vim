@@ -1,5 +1,5 @@
-nnoremap <leader>sr :set operatorfunc=SearchReplaceOperator<cr>g@
-vnoremap <leader>sr :<c-u>call SearchReplaceOperator(visualmode())<cr>
+" nnoremap <leader>sr :set operatorfunc=SearchReplaceOperator<cr>g@
+" vnoremap <leader>sr :<c-u>call SearchReplaceOperator(visualmode())<cr>
 
 " This operator performs a search and replace on the whole file, using the selection
 " In the case of line or block selections, it defaults to a search and replace on the selection
