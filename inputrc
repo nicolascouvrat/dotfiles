@@ -18,5 +18,5 @@ set keymap vi-command
 set keymap vi-insert
 "jk":vi-movement-mode
 
-
+Tab:menu-complete
 
