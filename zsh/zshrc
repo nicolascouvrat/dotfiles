@@ -136,55 +136,27 @@ alias sz="source ~/.zshrc"
 
 # Kube
 alias k="kubectl"
+# get pods on node
+kpods-on-node () {
+  kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=$1
+}
 
-# BEGIN ANSIBLE MANAGED BLOCK
-# Add homebrew binaries to the path.
-export PATH="/usr/local/bin:${PATH?}"
+# get nodes for role
+knodes-for-role () {
+  kubectl get nodes -l node-role.kubernetes.io/$1='' ${@:2}
 
-# Force certain more-secure behaviours from homebrew
-export HOMEBREW_NO_INSECURE_REDIRECT=1
-export HOMEBREW_CASK_OPTS=--require-sha
+}
 
-# Load ruby shims
-eval "$(rbenv init -)"
+knodes-for-app () {
+  kubectl get nodes -l app.kubernetes.io/name=$1 ${@:2}
+}
 
-# Prefer GNU binaries to Macintosh binaries.
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+# kills nodes using @david.benque's tool
+kkill-nodes () {
+  kubectl annotate nodes $1 nla.datadoghq.com/set-condition=application
+}
 
-# Add AWS CLI to PATH
-export PATH="/usr/local/opt/awscli@1/bin:$PATH"
-
-# Add datadog devtools binaries to the PATH
-export PATH="${HOME?}/dd/devtools/bin:${PATH?}"
-
-# Point GOPATH to our go sources
-export GOPATH="${HOME?}/go"
-
-# Point DATADOG_ROOT to ~/dd symlink
-export DATADOG_ROOT="${HOME?}/dd"
-
-# Tell the devenv vm to mount $GOPATH/src rather than just dd-go
-export MOUNT_ALL_GO_SRC=1
-
-# store key in the login keychain instead of aws-vault managing a hidden keychain
-export AWS_VAULT_KEYCHAIN_NAME=login
-
-# tweak session times so you don't have to re-enter passwords every 5min
-export AWS_SESSION_TTL=24h
-export AWS_ASSUME_ROLE_TTL=1h
-# END ANSIBLE MANAGED BLOCK
-
-# DD ONLY
-# to boot the devenv
-alias devenvboot="java \
-  -Dconfig.resource=local.conf \
-  -Xms2048m -Xmx2048m -XX:MaxMetaspaceSize=256m \
-  -cp devenv/target/logs-backend-devenv-1.0-SNAPSHOT-shaded.jar \
-com.dd.logs.launcher.Main"
-# to easily go to logs-admin-front
-alias cd-admin-front="cd ${DATADOG_ROOT}/logs-backend/admin-front/src/main/resources/web/"
-
-export JAVA_HOME=$(/usr/libexec/java_home -v 13)
-eval "$(nodenv init -)"
-# for macos
-alias ctags="`brew --prefix`/bin/ctags"
+export LESS=-FRSX
+if [ -r $HOME/dotfiles/zsh/local-zshrc ]; then
+  source $HOME/dotfiles/zsh/local-zshrc
+fi
