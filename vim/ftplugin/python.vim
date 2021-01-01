@@ -30,6 +30,12 @@ inoremap <buffer> { {}<esc>i
 inoremap <buffer> " ""<esc>i
 inoremap <buffer> ' ''<esc>i
 " }}}
+" Autocommands {{{
+augroup python
+  autocmd! BufWritePost <buffer>
+  autocmd BufWritePost <buffer> call python#FormatFile()
+augroup END
+" }}}
 " Misc {{{
 " highlight trailing spaces on save 
 autocmd BufWritePre * match Error /\v +$/

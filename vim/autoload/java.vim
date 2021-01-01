@@ -1,26 +1,10 @@
-let s:quickfixOpened = 0
-
 function! java#FormatFile()
   "TODO: make the location of the formatter modifiable
-  " let formatter = "~/google-java-format-1.7-all-deps.jar"
+  " let formatter = "~/google-java-format-1.9-all-deps.jar"
   " let formatter = "~/javaimports-0.1-all-deps.jar"
-  let formatter = "~/javaimports-0.2-SNAPSHOT-all-deps.jar"
-  let ret = system("java -jar " . formatter . " --replace " . expand("%"))
-  
-  if v:shell_error
-    let s:quickfixOpened = 1
-    silent cexpr ret
-    copen
-    return
-  endif
-
-  if s:quickfixOpened
-    let s:quickfixOpened = 0
-    silent cexpr []
-    cclose
-  endif
-
-  e
+  let formatter = "~/javaimports-1.1-SNAPSHOT-all-deps.jar"
+  let cmd = "java -jar " . formatter . " --replace"
+  call utilities#RunOnCurrentFile(cmd)
 endfunction
 
 " These folders in succession indicate the root
