@@ -157,6 +157,6 @@ kkill-nodes () {
 }
 
 export LESS=-FRSX
-if [ -r $HOME/dotfiles/zsh/local-zshrc ]; then
-  source $HOME/dotfiles/zsh/local-zshrc
+if [ -r $HOME/dotfiles/zsh/local_zshrc ]; then
+  source $HOME/dotfiles/zsh/local_zshrc
 fi
