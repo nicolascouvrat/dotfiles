@@ -135,6 +135,11 @@ nnoremap <leader>h <c-w>h
 nnoremap <leader>k <c-w>k
 nnoremap <leader>j <c-w>j
 nnoremap <leader>l <c-w>l
+" resize splits
+nnoremap <leader>H :vertical resize +5<cr>
+nnoremap <leader>K :resize +5<cr>
+nnoremap <leader>J :resize +5<cr>
+nnoremap <leader>L :vertical resize +5<cr>
 " duplicate line
 nnoremap <leader>dl Vyp
 " use \v (very magic) mode on searches
