@@ -156,6 +156,30 @@ kkill-nodes () {
   kubectl annotate nodes $1 nla.datadoghq.com/set-condition=application
 }
 
+# Stream the state of the pods deployed in a given application cluster
+function k8s-cluster-w {
+  local cluster=$1
+  kubectl get pods -l cluster="$1" --sort-by='{.metadata.name}' -w
+}
+
+# List all application clusters in k8s
+function k8s-app-clusters {
+  local app=$1
+  shift
+  k get service -l app="$app" -o custom-columns='NAMESPACE:metadata.namespace,CLUSTER:metadata.labels.cluster' "$@" | sort | uniq
+}
+
+# Display the state of the pods deployed in a given application cluster
+function k8s-cluster {
+  local cluster=$1
+  kubectl get pods -l cluster="$1" --sort-by='{.metadata.name}'
+}
+
+# Exec a command (bash by default) into a given pod
+function k8s-podexec {
+  kubectl exec -it "$1" -- "${2:-/bin/bash}"
+}
+
 export LESS=-FRSX
 if [ -r $HOME/dotfiles/zsh/local_zshrc ]; then
   source $HOME/dotfiles/zsh/local_zshrc
