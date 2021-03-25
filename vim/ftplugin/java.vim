@@ -1,6 +1,7 @@
 " Abbreviations {{{
 iabbrev <buffer> iff if<space>()<space>{<esc>o}<esc>kf(a
 iabbrev <buffer> forr for<space>()<space>{<esc>o}<esc>kf(a
+iabbrev <buffer> rtn return;<esc>i
 " }}}
 " Mappings {{{
 " automatically close {[(
