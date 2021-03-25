@@ -180,7 +180,14 @@ function k8s-podexec {
   kubectl exec -it "$1" -- "${2:-/bin/bash}"
 }
 
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
 export LESS=-FRSX
 if [ -r $HOME/dotfiles/zsh/local_zshrc ]; then
   source $HOME/dotfiles/zsh/local_zshrc
+fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi
