@@ -21,6 +21,10 @@ vmap <silent> <leader>c :<c-u>call MdCodeOperator(visualmode(), 1)<cr>
 " fix orthograph
 nnoremap <buffer> <leader>o ]sz=
 
+" helpers
+nnoremap <buffer> <leader>todo :call Todo()<cr>
+nnoremap <buffer> <leader>idid :call Idid()<cr>
+
 
 " }}}
 " Folding {{{
@@ -68,6 +72,23 @@ function! Today()
   call append(last, ["", "# " . today, ""])
   " Insert two lines, and start writing!
   execute "normal! Go"
+  startinsert
+endfunction
+
+" Inserts a title with today's date formatted for journal
+function! Todo()
+  let last = line('$')
+  let now = strftime("%B %d, %Y (%T)")
+  call append(last, "- TODO: " . now . ":  ")
+  execute "normal! GA"
+  startinsert
+endfunction
+
+" Inserts a marker for a task
+function! Idid()
+  let last = line('$')
+  call append(last, "- IDID:  ")
+  execute "normal! GA"
   startinsert
 endfunction
 

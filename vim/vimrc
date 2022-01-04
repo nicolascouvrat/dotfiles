@@ -14,6 +14,10 @@ Plugin 'mxw/vim-jsx'
 " go
 Plugin 'fatih/vim-go'
 Plugin 'nicolascouvrat/vim-simple-tags'
+" test
+Plugin 'file:///Users/nicolas.couvrat/personal/jawa.vim'
+" typescript
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 " It's now fine to turn back on filetype
@@ -206,7 +210,7 @@ augroup END
 " }}}
 " Plugin config {{{
 " ignore maven build files in ctrlp finder
-let g:ctrlp_custom_ignore = '\v[\/](target)' 
+let g:ctrlp_custom_ignore = '\v[\/](target)|node_modules' 
 " list files quicker in big git projects
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 " change default mapping
