@@ -24,6 +24,7 @@ nnoremap <buffer> <leader>o ]sz=
 " helpers
 nnoremap <buffer> <leader>todo :call Todo()<cr>
 nnoremap <buffer> <leader>idid :call Idid()<cr>
+nnoremap <buffer> <leader>done :call Done()<cr>
 
 
 " }}}
@@ -77,11 +78,20 @@ endfunction
 
 " Inserts a title with today's date formatted for journal
 function! Todo()
+  let next = line('.')
+  let now = strftime("%B %d, %Y (%T)")
+  call append(next, "- TODO: " . now . ":  ")
+  execute "normal! A"
+  startinsert
+endfunction
+
+function! Done()
   let last = line('$')
   let now = strftime("%B %d, %Y (%T)")
-  call append(last, "- TODO: " . now . ":  ")
-  execute "normal! GA"
-  startinsert
+  let pattern = '^- (.+): (.+): (.+)$'
+  let cmd =  'substitute/\v' . pattern . '/- DONE: ' . now .': \3/'
+  execute cmd
+  execute "normal! ddGp"
 endfunction
 
 " Inserts a marker for a task

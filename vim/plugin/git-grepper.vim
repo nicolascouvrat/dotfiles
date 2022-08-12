@@ -3,7 +3,8 @@ nmap <silent> <leader>gg :set opfunc=GitGrepOperator<cr>g@
 vmap <silent> <leader>gg :<c-u>call GitGrepOperator(visualmode(), 1)<cr>
 
 " Command
-command! -nargs=+ GitGrep call GitGrepCommand(Sanitize('<args>'))
+command! -nargs=+ GitGrep call GitGrepCommand(Sanitize('<args>'), 1)
+command! -nargs=+ GitGrepNoTests call GitGrepCommand(Sanitize('<args>'), 0)
 " Sets a binding to come back to the original file after moving around
 " in the quickfix list. This will stay set to the same file until the
 " next grep search. Default is NOOP.
@@ -16,13 +17,13 @@ function! Sanitize(args)
     return split(args_string, ' ')
 endfunction
 
-function! GitGrepCommand(args)
+function! GitGrepCommand(args, include_java_test_files)
     " TODO for now this will bug if not simply inserting a keyword
     let grep_string = ""
     for arg in a:args
         let grep_string = grep_string . arg
     endfor
-    call GitGrep(grep_string)
+    call GitGrep(grep_string, a:include_java_test_files)
 endfunction
 
 function! GetBackToOriginalFile()
@@ -43,10 +44,10 @@ function! GitGrepOperator(type, ...)
     else
         return
     endif
-    call GitGrep(@@)
+    call GitGrep(@@, 1)
 endfunction
 
-function! GitGrep(grep_string)
+function! GitGrep(grep_string, include_java_test_files)
     if a:grep_string ==# ""
         return
     endif
@@ -54,6 +55,9 @@ function! GitGrep(grep_string)
     " the -n is necessary for vim to correctly interpret matches
     let &grepprg = "git grep -n $*"
     let cmd = "silent grep! " . shellescape(a:grep_string)
+    if !a:include_java_test_files
+      let cmd = cmd . " --  ':!*Test.java'" 
+    endif
     execute cmd
     " restore display
     execute "normal! \<c-l>"
