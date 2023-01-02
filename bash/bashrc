@@ -91,3 +91,7 @@ alias sb="source ~/.bashrc"
 
 # enable usage of variables directly in cd (without $)
 shopt -s cdable_vars
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
