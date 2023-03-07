@@ -53,6 +53,6 @@ function! utilities#OpenGithubLink()
     let filepath = trim(system("git ls-files --full-name " . absolute_path))
     let line = line(".")
     let url = "https://github.com/" . repository . "/blob/" . commit . "/" . filepath . "#L" . line
-    ## This does not work with tmux, nothing gets opened
+    " This does not work with tmux, nothing gets opened
     call system("open " . url)
 endfunction
