@@ -20,10 +20,15 @@ endfunction
 function! GitGrepCommand(args, include_java_test_files)
     " TODO for now this will bug if not simply inserting a keyword
     let grep_string = ""
-    for arg in a:args
-        let grep_string = grep_string . arg
-    endfor
-    call GitGrep(grep_string, a:include_java_test_files)
+    let l = len(a:args)
+    if l ==# 1
+        call GitGrep(a:args[0], a:include_java_test_files, "")
+        return
+    elseif l ==# 2
+        call GitGrep(a:args[0], a:include_java_test_files, a:args[1])
+        return
+    else
+    endif
 endfunction
 
 function! GetBackToOriginalFile()
@@ -44,10 +49,10 @@ function! GitGrepOperator(type, ...)
     else
         return
     endif
-    call GitGrep(@@, 1)
+    call GitGrep(@@, 1, "")
 endfunction
 
-function! GitGrep(grep_string, include_java_test_files)
+function! GitGrep(grep_string, include_java_test_files, subdir)
     if a:grep_string ==# ""
         return
     endif
@@ -55,9 +60,18 @@ function! GitGrep(grep_string, include_java_test_files)
     " the -n is necessary for vim to correctly interpret matches
     let &grepprg = "git grep -n $*"
     let cmd = "silent grep! " . shellescape(a:grep_string)
-    if !a:include_java_test_files
-      let cmd = cmd . " --  ':!*Test.java'" 
+    let include_all_dirs = a:subdir ==# ""
+    if !a:include_java_test_files || !include_all_dirs
+      let cmd = cmd . " -- "
     endif
+    if !include_all_dirs 
+      let subdir_str = "./" . a:subdir . "/*"
+      let cmd = cmd . subdir_str 
+    endif
+    if !a:include_java_test_files
+      let cmd = cmd . " ':!*Test.java'" 
+    endif
+    echom cmd
     execute cmd
     " restore display
     execute "normal! \<c-l>"
