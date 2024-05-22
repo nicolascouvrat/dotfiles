@@ -18,6 +18,7 @@ Plugin 'nicolascouvrat/vim-simple-tags'
 Plugin 'file:///Users/nicolas.couvrat/personal/jawa.vim'
 " typescript
 Plugin 'leafgarland/typescript-vim'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 " It's now fine to turn back on filetype

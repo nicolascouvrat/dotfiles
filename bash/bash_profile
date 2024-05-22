@@ -7,3 +7,4 @@ if [ -r ~/.bashrc ]; then
    source ~/.bashrc
 fi
 # END ANSIBLE MANAGED BLOCK
+. "$HOME/.cargo/env"

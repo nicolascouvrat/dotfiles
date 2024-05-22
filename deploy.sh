@@ -81,6 +81,10 @@ git clone https://github.com/jimeh/git-aware-prompt.git ~/.bash/git-aware-prompt
 cd $ROOT
 
 ### ZSH ###
+log info "Installing Oh My ZSH"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+log info "Done"
+
 cd ./zsh
 simple_link zshrc ~/.zshrc
 cd $ROOT
