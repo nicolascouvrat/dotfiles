@@ -1,5 +1,6 @@
 # swap files
 *.swp
+*.DS_Store
 
 # local configuration
 local_*

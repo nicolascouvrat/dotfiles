@@ -234,4 +234,4 @@ eval "$(pyenv init -)"
 
 # Work around "too many files open" error when building with maven
 ulimit -n 10240
-
+export GPG_TTY=$(tty)

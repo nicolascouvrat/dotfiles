@@ -33,6 +33,6 @@ nnoremap <buffer> <leader>r :GoRun<CR>
 nnoremap <buffer> <leader>t :GoTest<CR>
 nnoremap <buffer> <leader>c :GoCoverageToggle<CR>
 
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gofmt"
 " }}}
 
