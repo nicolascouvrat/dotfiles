@@ -12,7 +12,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 " go
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
 Plugin 'nicolascouvrat/vim-simple-tags'
 " test
 Plugin 'file:///Users/nicolas.couvrat/personal/jawa.vim'

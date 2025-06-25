@@ -122,6 +122,10 @@ brew install tmux
 log info "Installing reattach-to-user-namespace..."
 brew install reattach-to-user-namespace
 
+# required for bazel
+log info "Installing buildifier..."
+go install github.com/bazelbuild/buildtools/buildifier@latest
+
 
 log info "Installing Dracula Terminal.app theme..."
 backup_and_clean ~/dracula-terminal-theme

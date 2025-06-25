@@ -20,6 +20,13 @@ inoremap <buffer> ' ''<esc>i
 " insert \n
 inoremap <buffer> <leader><CR> \n
 " }}}
+" Autocommands {{{
+augroup go
+  " It is critical to specify buffer in the autocmd! too! See this link: https://vi.stackexchange.com/questions/8056/for-an-autocmd-in-a-ftplugin-should-i-use-pattern-matching-or-buffer
+  autocmd! BufWritePost <buffer>
+  autocmd BufWritePost <buffer> call go#FormatFile()
+augroup END
+" }}}
 " Abbreviations {{{
 function! ExpandFunction(string)
   echom a:string
