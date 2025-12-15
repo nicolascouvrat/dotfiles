@@ -5,7 +5,7 @@ endfunction
 function! java#FormatFile()
   "TODO: make the location of the formatter modifiable
   " let formatter = "~/google-java-format-1.21.0-all-deps.jar"
-  let formatter = "~/javaimports-1.6-SNAPSHOT-all-deps.jar --telemetry-enable"
+  let formatter = "~/javaimports-1.6-all-deps.jar --telemetry-enable"
   " let cmd = "~/javaimports-native-image-2 -Djava.home=$JAVA_HOME --replace --telemetry-enable"
   let cmd = "java -jar " . formatter . " --replace"
   call utilities#RunOnCurrentFile(cmd)
